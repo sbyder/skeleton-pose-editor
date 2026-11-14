@@ -21,7 +21,7 @@ Keep these files in the same directory.
 - **Skeleton:** 24 joints
 - **Editing:** IK drag (preserves bone lengths), free node offset, numeric joint rotation/offset editing, whole-character root translation, keyframe add/remove, undo/redo, independent clip preview
 - **Weapon visualization:** current small knife shares a render-depth group with the right forearm; grip and `weapon_tip_r` socket visualization
-- **Layer order:** per-motion data. The guard clip puts the right forearm/knife group in front; quick and heavy attacks keep the right upper arm and forearm/knife group behind the torso. This is editable metadata, not a universal weapon rule.
+- **Layer order:** per-motion data. Guard puts only the right forearm/knife group in front; quick and heavy attacks put both right-arm groups in the rear-most layer, below the legs and torso. Other clips keep the previous back layer. These are editable metadata defaults for the current small knife, not universal weapon rules.
 - **Ground lock:** optional viewport constraint that vertically shifts the whole pose so the lowest foot contact stays on the floor line. It does not rewrite motion tracks or bake root offsets into exported clips.
 
 ## Data and export boundaries
