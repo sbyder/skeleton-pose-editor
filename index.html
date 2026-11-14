@@ -72,7 +72,7 @@ kbd{font-family:ui-monospace,monospace;background:#f2f4f8;border:1px solid #dfe6
   <section class="panel"><div class="side-head"><span>动作列表 <span id="count"></span></span><span class="smalltxt">可单独调进度</span></div><div class="side-scroll" id="motionList"></div></section>
   <section class="panel editor">
     <div class="editor-head"><div><h2 id="motionName">—</h2><div class="smalltxt" id="motionId">—</div></div><div class="top-controls"><button id="playBtn" class="primary">▶ 播放</button><button id="prevBtn">← 上一关键帧</button><button id="nextBtn">下一关键帧 →</button></div></div>
-    <div class="hint"><strong>怎么调：</strong>左侧每个动作都有独立进度条。拖右侧画布的黄色关节点可编辑姿态；蓝色十字点可整体拖动小人。右臂绘制层级按动作数据配置：格挡时小臂与小刀置前，挥击时右臂置后。可勾选「脚底贴地锁定」自动调整整个人物的高度，使最低脚点贴住地板线。<strong>拖动前会在当前时间创建编辑关键帧</strong>，最后点「生成修改 JSON」复制给我。</div>
+    <div class="hint"><strong>怎么调：</strong>左侧每个动作都有独立进度条。拖右侧画布的黄色关节点可编辑姿态；蓝色十字点可整体拖动小人。右臂绘制层级按动作数据配置：格挡时小臂与小刀置前，挥击时右臂置于最底层。可勾选「脚底贴地锁定」自动调整整个人物的高度，使最低脚点贴住地板线。<strong>拖动前会在当前时间创建编辑关键帧</strong>，最后点「生成修改 JSON」复制给我。</div>
     <div class="settings"><label>拖拽模式 <select id="dragMode"><option value="ik">IK（保持骨长）</option><option value="offset">自由移动节点</option></select></label><label><input id="showBones" type="checkbox"> 显示骨骼连线</label><label><input id="showWeapon" type="checkbox" checked> 显示右手武器</label><label><input id="showLabels" type="checkbox"> 显示节点 ID</label><label><input id="showWeaponSockets" type="checkbox" checked> 显示刀柄/刀尖挂点</label><label><input id="groundLock" type="checkbox"> 脚底贴地锁定</label></div>
     <div class="viewer-grid">
       <div class="stage-wrap"><canvas id="stage" width="760" height="580" aria-label="可拖动关节的骨骼编辑器"></canvas><span class="legend">黄圈为关节 · 蓝圈为选中 · 刀尖黄点 · 固定角度绑定，无自动翻向</span></div>
