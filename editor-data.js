@@ -2466,8 +2466,8 @@ window.EDITOR_DATA = {
       "events": [],
       "renderOrder": {
         "rightArm": {
-          "upperArm": "back",
-          "forearmWeapon": "back"
+          "upperArm": "rear",
+          "forearmWeapon": "rear"
         }
       }
     },
@@ -2958,8 +2958,8 @@ window.EDITOR_DATA = {
       "events": [],
       "renderOrder": {
         "rightArm": {
-          "upperArm": "back",
-          "forearmWeapon": "back"
+          "upperArm": "rear",
+          "forearmWeapon": "rear"
         }
       }
     },
