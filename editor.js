@@ -115,13 +115,16 @@ function drawHumanoid(ctx,pose,canvas,options){
  for(let y=g.cy%(32*s);y<h;y+=32*s){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}
  const floorY=DATA.floor?.y??0,gl=worldToScreen({x:-260,y:floorY},canvas),gr=worldToScreen({x:260,y:floorY},canvas);
  line(ctx,gl,gr,1.4,'#bccbdc');
- // Legs are the rear-most body layer.
+ // Attack-specific rear layer: right upper arm and forearm/knife sit below the legs and torso.
+ if(layers.upperArm==='rear')drawUpperArm();
+ if(layers.forearmWeapon==='rear')drawForearmWeapon();
+ // Legs remain in front of the rear-most attack arm, but behind the torso.
  for(const side of ['r','l']){
    const color=side==='r'?COLORS.dark:COLORS.clothes;
    seg('pelvis','thigh_'+side,24,color);seg('thigh_'+side,'shin_'+side,18,color);
    seg('shin_'+side,'foot_'+side,13,color);seg('foot_'+side,'toe_'+side,11,COLORS.dark);
  }
- // Each action chooses whether the upper arm and forearm/knife group sit behind or in front.
+ // Default/back layer preserves the previous depth: in front of legs, behind the torso.
  if(layers.upperArm==='back')drawUpperArm();
  if(layers.forearmWeapon==='back')drawForearmWeapon();
  const pelvis=p.pelvis,sl=p.shoulder_l,sr=p.shoulder_r,neck=p.neck,head=p.head;
@@ -355,7 +358,7 @@ function validatePatch(p){
  for(const [mid,value] of Object.entries(renderOrderByMotion)){
   if(!motionMap[mid])throw Error('未知动作层级：'+mid);
   const arm=value?.rightArm||{};
-  for(const key of ['upperArm','forearmWeapon'])if(arm[key]&&!['back','front'].includes(arm[key]))throw Error('非法渲染层级：'+key);
+  for(const key of ['upperArm','forearmWeapon'])if(arm[key]&&!['rear','back','front'].includes(arm[key]))throw Error('非法渲染层级：'+key);
  }
  return {patches:next,renderOrderByMotion};
 }
@@ -363,7 +366,7 @@ function applyRenderOrderByMotion(map){
  for(const [mid,value] of Object.entries(map||{})){
   const m=motionMap[mid];if(!m)throw Error('未知动作层级：'+mid);
   const arm=value?.rightArm||{};
-  for(const key of ['upperArm','forearmWeapon'])if(arm[key]&&!['back','front'].includes(arm[key]))throw Error('非法渲染层级：'+key);
+  for(const key of ['upperArm','forearmWeapon'])if(arm[key]&&!['rear','back','front'].includes(arm[key]))throw Error('非法渲染层级：'+key);
   m.renderOrder={...(m.renderOrder||{}),rightArm:{...(m.renderOrder?.rightArm||{}),...arm}};
  }
 }
